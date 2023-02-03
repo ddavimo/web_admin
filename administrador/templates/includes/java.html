@@ -1,0 +1,45 @@
+{% block java %}
+
+
+<script>
+
+
+
+
+    $("#Cafe_form").on(
+        "submit", function (event) {
+            event.preventDefault();
+            var form = $(this);
+            var ldata = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'agregar' %}",
+                data: ldata,
+                success: function (response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError, response) {
+                    if (xhr.status == 400) {
+                        var datos = JSON.parse(xhr.responseText);
+                        m = datos.error.codCafe;
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR',
+                            text: '! ' + m + ' ¡',
+                        })
+                    } else {
+                        alert('otro error')
+                    }
+                }
+            })
+
+        });
+
+
+
+</script>
+
+
+
+{% endblock%}

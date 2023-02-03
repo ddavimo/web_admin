@@ -1,0 +1,32 @@
+h4 {
+  color: #39ff14;
+}
+
+#id_div02 {
+  display: inline;
+  flex-flow: row wrap;
+  align-items: center;
+  background-color: royalblue;
+}
+
+button {
+  background-color: Transparent;
+  border: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  outline: none;
+  overflow: hidden;
+}
+
+
+.modal-success {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dff0d8), to(#c8e5bc));
+  background-image: -webkit-linear-gradient(#dff0d8 0%, #c8e5bc 100%);
+  background-image: -moz-linear-gradient(#dff0d8 0%, #c8e5bc 100%);
+  background-image: -o-linear-gradient(#dff0d8 0%, #c8e5bc 100%);
+  background-image: linear-gradient(#dff0d8 0%, #c8e5bc 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdff0d8',     endColorstr='#ffc8e5bc', GradientType=0);
+  border-color: #b2dba1;
+  border-radius: 6px 6px 0 0;
+}

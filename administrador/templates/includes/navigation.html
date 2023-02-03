@@ -1,0 +1,111 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle d-inline">
+        <button type="button" class="navbar-toggler">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <h3 id="h3_01">ddavimo</h3>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="navbar-nav ml-auto">
+        <li class="search-bar input-group">
+          <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal">
+            <i class="tim-icons icon-zoom-split"></i>
+            <span class="d-lg-none d-md-block">Search</span>
+          </button>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <div class="notification d-none d-lg-block d-xl-block"></div>
+            <i class="tim-icons icon-sound-wave"></i>
+            <p class="d-lg-none">Notifications</p>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+            <li class="nav-link">
+              <a href="#" class="nav-item dropdown-item">Mike John responded to your email</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael is in town</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">Another notification</a>
+            </li>
+            <li class="nav-link">
+              <a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown nav-item">
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <div class="photo">
+              <img src="/static/assets/img/anime3.png" alt="Profile Photo" />
+            </div>
+            <b class="caret d-none d-lg-block d-xl-block"></b>
+            <p class="d-lg-none">Log out</p>
+          </a>
+          <ul class="dropdown-menu dropdown-navbar">
+            <li class="nav-link">
+              <a href="/page-user.html" class="nav-item dropdown-item">Profile</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li class="nav-link">
+              <a href="" class="nav-item dropdown-item">Log out</a>
+            </li>
+          </ul>
+        </li>
+        <li class="separator d-lg-none"></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH" />
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="tim-icons icon-simple-remove"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Navbar -->
+
+
+<style>
+  #h3_01 {
+    margin-top: 5%;
+    margin-left: 10%;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg,
+        orangered 0%, Darkorange 17%,
+        khaki 34%,
+        gold 51%,
+        coral 68%,
+        rgb(255, 217, 0) 82%,
+        Darkorange 100%);
+    background-size: 100% 100%;
+    animation: degis 12s infinite linear;
+    background-clip: text;
+    color: transparent;
+    /* font: 8rem 'Montserrat', sans-serif; */
+    font: 2rem 'audiowide';
+  }
+</style>

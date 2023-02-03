@@ -1,0 +1,21 @@
+{% extends "geeks/index.html" %}
+
+{% block content %}
+<form method="POST" action="{% url 'update' %}">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="col-md-2 mb-3">
+            <input type="text" class="form-control" placeholder="id" name="id" value="{{data.id}}" required
+                readonly="True" disabled>
+        </div>
+        <div class="col-md-4 mb-3">
+            <input type="text" class="form-control" placeholder="Titulo" name="title" value="{{data.title}}" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="text" class="form-control" placeholder="Descripcion" value="{{data.description}}"
+                name="description" required>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Editar</button>
+</form>
+{% endblock %}

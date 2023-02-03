@@ -1,0 +1,135 @@
+{% extends 'contenido.html' %}
+{% load static %}
+{% block homecafe %}
+
+<div class="row x_title">
+  <div class="col-md-6">
+    <h4>Agregar Producto Nuevo <small></small></h4>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="row" id="id_div02">
+    <form method="POST" id="Cafe_form">
+      {% csrf_token %}
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" name="nombre" id="nombre" class="form-control" />
+            <label class="form-label" for="nombre">Nombre</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" id="descripcion" name="descripcion" class="form-control" />
+            <label class="form-label" for="descripcion">Descripcion</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" id="codCafe" name="codCafe" class="form-control" />
+            <label class="form-label" for="codCafe">CodCafe</label>
+          </div>
+        </div>
+      </div>
+      <button id="btagr01" class="btn btn-primary btn-block mb-4" onclick="fagregar(event)">
+        Agregar Producto
+      </button>
+    </form>
+  </div>
+</div>
+<table class="table" id="tablecafe">
+  <thead>
+    <tr>
+      <th scope="col">Cod</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Eliminar</th>
+      <th scope="col">Editar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for coffee in cafes %}
+    <tr>
+      <td>{{coffee.codCafe}}</td>
+      <td>{{coffee.nombre}}</td>
+      <td>{{coffee.descripcion}}</td>
+      <td>
+        <button onclick="msjes_elimado(codCafe='{{coffee.codCafe}}')" id="belim01">
+          <i class="tim-icons icon-trash-simple text-primary" id="i01"></i></button>
+      </td>
+      <td> <button onclick="feditar(codCafe='{{coffee.codCafe}}')" id="bedit01"><i
+            class="tim-icons icon-zoom-split text-primary" id="i01"></i></button></td>
+    </tr>
+
+    {% endfor %}
+
+  </tbody>
+</table>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><!-- Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+
+<script>
+
+  function feditar(codCafe) {
+
+    // alert(codCafe);
+    $.ajax({
+      type: "POST",
+      url: "/editar/",
+      data: {
+        "codCafe": codCafe
+      },
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken")
+      },
+      success: function (response) {
+        let name = response.nombre;
+        $('.modal-body').html(response);
+        $('.modal-body').append(response.codCafe, response.nombre);
+
+        $('#miModal').modal('show');
+      },
+    });
+  };
+
+
+  // function feditar() {
+
+  //   var tr = $("#tablecafe").cell($(this).closest('td,li')).index();
+  //   // var data = tablecafe.row(tr.row).data();
+  //   alert(tr);
+
+  // }
+
+
+</script>
+
+
+
+<div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">This is a Modal-title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="body01">
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal  -->
+{% block edit_cafe %} {% endblock %}
+<!-- EndModal  -->
+{% endblock %}

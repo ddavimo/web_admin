@@ -1,0 +1,29 @@
+{% extends "geeks/index.html" %}
+{% load static %}
+{% block content %}
+<div class="divtbl">
+    <table class="table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in prueba %}
+            <tr>
+                <td>{{ data.id}}
+                <td>{{ data.description.capitalize }}</td>
+                <td>{{ data.title.capitalize }}</td>
+                <td><a href="detail/{{data.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><button onclick="msjes_elimado(id='{{data.id}}')" id="belim01"><i class="fa fa-trash-o"
+                            aria-hidden="true"></i></button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

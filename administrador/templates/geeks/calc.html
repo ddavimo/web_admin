@@ -1,0 +1,284 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+    <title>Calculadora</title>
+    <link rel="stylesheet" type="text/css" href="calculadora.css" />
+    <script type="text/javascript" src="calculadora.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="calculadora">
+        <form action="#" name="calculadora" id="calculadora">
+            <input type="text" id="pccl" value=''>
+            <input type="text" id="ptf" value=''>
+            <p>
+                <input type="button" class="largo" value="Retr" onclick="retro()" />
+                <input type="button" class="largo" value="CE" onclick="borradoParcial()" />
+                <input type="button" class="largo" value="C" id="borrar" onclick="borradoTotal()" />
+            </p>
+            <p>
+                <input type="button" value="7" class="num" />
+                <input type="button" value="8" class="num" />
+                <input type="button" value="9" class="num" />
+                <input type="button" value="/" class="oper" />
+                <input type="button" value="Raiz" class="oper" />
+            </p>
+            <p>
+                <input type="button" value="4" class="num" />
+                <input type="button" value="5" class="num" />
+                <input type="button" value="6" class="num" />
+                <input type="button" value="*" class="oper" />
+                <input type="button" value="%" class="oper" />
+            </p>
+            <p>
+                <input type="button" value="1" class="num" />
+                <input type="button" value="2" class="num" />
+                <input type="button" value="3" class="num" />
+                <input type="button" value="-" class="oper" />
+                <input type="button" value="1/x" />
+            </p>
+            <p>
+                <input type="button" value="0" class="num" />
+                <input type="button" value="+/-" onclick="opuest()" />
+                <input type="button" value="." onclick="numero('.')" />
+                <input type="button" value="+" class="oper" />
+                <input type="button" value="=" onclick="igualar()" />
+            </p>
+        </form>
+    </div>
+
+    <div class="container">
+        <div id="div1">1</div>
+        <div id="div2">2</div>
+        <div id="div3">3</div>
+    </div>
+    <div class="container2">
+        <div id="div1">1</div>
+        <div id="div2">2</div>
+        <div id="div3">3</div>
+        <div id="div3">4</div>
+        <div id="div3">5</div>
+        <div id="div3">6</div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+
+<style>
+    .container {
+
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+
+    }
+
+    .container>div {
+        background-color: aqua;
+        width: 200px;
+        padding: 5px;
+        margin-left: 15px;
+        border-radius: 5%;
+        height: 100px;
+        margin-top: 20px;
+        text-align: center;
+        justify-content: center;
+        line-height: 100px;
+        box-shadow:
+            5.7px 0px 65.9px -2px rgba(0, 0, 0, 0.191),
+            50px 0px 181px -2px rgba(0, 0, 0, 0.29);
+    }
+
+
+    .container2 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+
+    }
+
+    .container2>div {
+        background-color: aqua;
+
+        padding: 5px;
+        margin-left: 15px;
+        border-radius: 5%;
+        height: 100px;
+        margin-top: 20px;
+
+        text-align: center;
+        justify-content: center;
+    }
+
+
+
+
+    /*aspectos generales: bordes y color de fondo de calculadora*/
+    .calculadora {
+        border: 3px rgb(194, 194, 209) ridge;
+        width: 250px;
+        text-align: center;
+        background-color: #f6f8d8;
+    }
+
+    /*pantalla de visualización: bordes, posición, color de fondo, estilo letra.*/
+    #textoPantalla {
+        width: 185px;
+        border: 2px black solid;
+        text-align: right;
+        position: relative;
+        left: 23px;
+        padding: 0px 5px;
+        background-color: white;
+        font-family: "courier new";
+        overflow: hidden;
+    }
+
+    /*botones normales: anchura y margen*/
+    .calculadora [type=button] {
+        width: 45px;
+        height: 45px;
+        padding: 0;
+        background-color: #f6f8d8;
+    }
+
+    .calculadora [type=button]:hover {
+        background-color:
+
+            rgba(187, 238, 238, .5);
+    }
+
+
+    /* .calculadora [type=button]:hover {
+        background-color:
+
+            rgba(153, 152, 236, 0.5);
+    } */
+
+    /*botones especiales*/
+    .calculadora input.largo {
+        color: red;
+        width: 80px;
+        height: 45px;
+
+    }
+
+    #ptf {
+        padding: 0px 5px;
+        background-color: #f6f8d8;
+        border: none;
+        font-size: 18px;
+        color: rgb(23, 29, 102);
+        text-align: right;
+    }
+
+    #pccl {
+        margin-top: 10px;
+        padding: 0px 2px;
+        background-color: #f6f8d8;
+        border: none;
+        font-size: 14px;
+        color: rgb(23, 29, 102);
+        text-align: right;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    let mostrar = 0;
+    let loper = 0;
+    let lnumoper = 0;
+    let solucion = 0;
+    let cadena = '';
+
+    $("#borrar").on("click", function () {
+        $('#ptf').val('');
+        $("#pccl").val('');
+        mostrar = 0;
+        lnumoper = 0;
+        var_oper = '';
+        loper = 0;
+        solucion = 0;
+        lcaden = '';
+        cadena = ''
+    });
+
+
+    $(".num").on("click", function () {
+        var_num = $(this).val();
+        cadena += var_num;
+        nump = $('#ptf').val();
+        if (loper == 0) {
+            if (mostrar == 0) {
+                mostrar = var_num;
+            } else {
+                mostrar += var_num;
+            }
+            // $('#ptf').val(mostrar);
+            $("#pccl").val(cadena);
+        } else {
+            if (lnumoper == 0) {
+                lnumoper = var_num;
+            } else {
+                lnumoper += var_num;
+            }
+            // $('#ptf').val(lnumoper);
+            $("#pccl").val(cadena);
+        }
+
+    });
+
+
+    $(".oper").on("click", function () {
+
+        oper = $('#ptf').val();
+        var_oper = $(this).val();
+        lcaden = $(this).val();
+        if (var_oper == '*') {
+            lcaden = 'x';
+        }
+        if (var_oper == '/') {
+            lcaden = '÷';
+        }
+        cadena += lcaden;
+        $('#ptf').val('');
+
+        $("#pccl").val(cadena);
+        if (loper == 1) {
+            $('.oper').css('background', '#f6f8d8');
+            $(this).css('background', 'rgba(153, 152, 236, 0.5)');
+        } else {
+            $(this).css('background', 'rgba(153, 152, 236, 0.5)');
+            loper = 1;
+        }
+
+    })
+
+
+    function igualar() {
+        if (var_oper != '') {
+            if (solucion != 0) {
+                mostrar = solucion;
+            }
+            result = mostrar + var_oper + lnumoper;
+            solucion = eval(result);
+            lnumoper = 0;
+            $('#ptf').val(solucion);
+        }
+        else {
+            $('#ptf').val(0);
+        }
+    }
+
+
+
+</script>

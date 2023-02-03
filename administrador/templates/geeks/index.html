@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geeks</title>
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="{% static '/FrWork/admin_lte/vendors/bootstrap/dist/css/bootstrap.min.css' %}">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="{% static '/FrWork/admin_lte/vendors/font-awesome/css/font-awesome.css' %}">
+    <!-- J-Query  -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <!-- CSS geeks  -->
+    <link rel="stylesheet" href="{% static '/assets/css/geeks.css' %}">
+    <!-- sweet Alert  -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- J-Query Personalizados  -->
+    <script src="{% static '/assets/js/geeks.js' %}"></script>
+</head>
+
+<body>
+    {% include 'geeks/nav.html' %}
+    <div id="cont" class="hero">
+        <div id="page-container">
+            <div id="content-wrap">
+                <div class="col-md-12">
+                    <div class="content-div">
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <div id="footer_child">&copy;
+            <span id="copyright">
+                <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+            </span>
+            ddavimo
+        </div>
+    </footer>
+</body>
+
+</html>

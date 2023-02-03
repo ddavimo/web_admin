@@ -1,0 +1,122 @@
+
+
+:root {
+    --maincolor: rgba(212, 234, 247,0.5);
+  }  
+
+#navsub {    
+    background-color: var(--maincolor);
+    height: 30px;    
+}
+
+button {
+    background-color: Transparent;
+    border: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    outline: none;
+    overflow: hidden;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+
+  
+  #footer {
+    
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;  
+    height: 40px;  
+    text-align: right;
+    }
+
+    #footer_child {
+        line-height: 20px;
+    }
+    .content-div {
+        padding: 20px;
+    }  
+
+    .hero {
+        position:relative; 
+        height: 100%;
+        width: 100%;      
+        align-items: center;
+        justify-items: center;
+    }
+
+    .hero::before {    
+        content: "";
+        background-image:  url("/static/assets/img/nature.jpg");
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        opacity: 0.2;
+        height: 100%;
+        width: 100%;  
+    }
+
+
+    .forma {
+      --width-of-input: 400px;
+      --border-height: 1px;
+      --border-before-color: rgba(221, 221, 221, 0.39);
+      --border-after-color: #5891ff;
+      --input-hovered-color: #c9d6eb27;
+      position: relative;
+      
+    }
+   
+    .input {    
+      font-size: 0.9rem;
+      background-color: transparent;
+      width: 100%;
+    
+      box-sizing: border-box;
+      padding-inline: 0.5em;
+      padding-block: 0.7em;
+      border: none;
+      border-bottom: var(--border-height) solid var(--border-before-color);
+      border-radius: 5%;
+    }
+   
+    .input-border {
+      position: absolute;
+      background: var(--border-after-color);
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+    }
+   /* Hover on Input */
+   input:hover {
+    background: var(--input-hovered-color);
+   }
+   
+   input:focus {
+    outline: none;
+   }
+   
+   input:focus ~ .input-border {
+    width: 100%;
+   }  
+
+   
+   
+  table>td {
+    width: max-content;
+    padding: 100px;
+  }
